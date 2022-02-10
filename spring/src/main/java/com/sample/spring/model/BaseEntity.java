@@ -10,9 +10,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@lombok.Builder
-@Entity
-@Table(name="T_MENU")
+@MappedSuperclass
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
