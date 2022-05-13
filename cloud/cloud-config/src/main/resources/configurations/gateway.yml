@@ -1,0 +1,51 @@
+server:
+  port: ${PORT:8080}
+
+eureka:
+  client:
+    serviceUrl: # eureka 注册中心地址
+      defaultZone: http://${REGISTRY_HOST:localhost}:${REGISTRY_PORT:8761}/eureka/
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread: # 线程隔离
+            timeoutInMilliseconds: 20000
+
+management:
+  endpoint:
+    gateway:
+      enabled: true # default value
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: header_route
+          uri: lb://USER
+          predicates:
+            - Header=X-Service,user
+        - id: header_path
+          uri: lb://USER
+          predicates:
+            - Path=/uservice/**
+          filters:
+            - StripPrefix=1 # 去除uservice 防止拼接到服务后，这是自定义过滤路径，不存在真实路径对应
+#        - id: prefixpath_route
+#          uri: lb://USER
+#          filters:
+#            - PrefixPath=/uprefix

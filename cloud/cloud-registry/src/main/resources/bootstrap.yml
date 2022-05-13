@@ -1,0 +1,26 @@
+server:
+  port: ${PORT:8761}
+
+spring:
+  application:
+    name: registry
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+#  cloud:
+#    config:
+#      uri: http://${CONFIG_HOST:localhost}:${CONFIG_PORT:8888}
+#      fail-fast: false
+#      username: user
+#      password: ${CONFIG_PASS:dev}
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
