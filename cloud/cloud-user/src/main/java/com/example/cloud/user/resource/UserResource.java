@@ -42,7 +42,7 @@ public class UserResource {
     String userName;
 
     /**
-     * 这里的  @PreAuthorize("#oauth2.hasAnyScope('SERVICE')") 用来限制授权客户端是否具备 SERVICE 的 scope
+     * 这里的  @PreAuthorize("#oauth2.hasAnyScope('SERVICE')") 用来限制远程访问的授权客户端是否具备 SERVICE 的 scope
      * @return
      */
     @UserQueryPreAuthorize
@@ -65,7 +65,7 @@ public class UserResource {
     }
 
     /**
-     * @PreFilter("#u.name != authentication.name")：演示了 防止新增和当前已授权用户名称相同的用户，通常不会这么限制
+     * @PreFilter("#u.name != authentication.name")：演示了 防止新增和当前已授权用户名称相同的用户
      * @ContactPermission 自定义元注解
      * @UserCreatePreAuthorize 自定义元注解
      * @param user

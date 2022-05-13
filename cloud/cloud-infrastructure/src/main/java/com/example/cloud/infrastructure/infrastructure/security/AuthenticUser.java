@@ -19,6 +19,7 @@ import java.util.Collection;
 @Setter
 public class AuthenticUser extends User implements UserDetails {
 
+    private Collection<? extends GrantedAuthority> authorities;
 
     public AuthenticUser(User user){
         BeanUtils.copyProperties(user,this);

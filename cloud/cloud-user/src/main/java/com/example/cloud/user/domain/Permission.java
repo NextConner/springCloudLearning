@@ -26,16 +26,17 @@ import java.util.Set;
 @Entity
 public class Permission extends BaseEntity implements GrantedAuthority {
 
-    /**
-     * {@link PermissionAttributeConverter} 类进行操作行为权限集合和数据库存储字符类型权限的转换
-     */
-    @Convert(converter = PermissionAttributeConverter.class)
-    private Set<ResourceOperatePermission> permission;
+    @Enumerated(value = EnumType.STRING)
+    private ResourceOperatePermission permission;
 
     private String resource;
 
+    /**
+     * 将资源和一个操作行为作为权限 : user.C = user 资源的 Create，也就是新建用户
+     * @return
+     */
     @Override
     public String getAuthority() {
-        return null;
+        return resource+"."+permission.name();
     }
 }
