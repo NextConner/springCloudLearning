@@ -2,7 +2,7 @@ package com.example.cloud.user.utility;
 
 import javax.persistence.AttributeConverter;
 
-import com.example.cloud.user.consts.ResourceOperatePermission;
+import com.example.cloud.infrastructure.consts.ResourceOperatePermission;
 
 import java.util.Arrays;
 import java.util.Set;

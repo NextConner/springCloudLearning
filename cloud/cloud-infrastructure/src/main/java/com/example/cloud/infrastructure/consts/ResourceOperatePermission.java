@@ -1,4 +1,4 @@
-package com.example.cloud.user.consts;
+package com.example.cloud.infrastructure.consts;
 
 /**
  * 默认的权限集

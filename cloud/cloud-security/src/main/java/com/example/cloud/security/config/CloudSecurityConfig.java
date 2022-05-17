@@ -33,7 +33,7 @@ public class CloudSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().cacheControl().disable();
-        http.formLogin().and().authorizeRequests().antMatchers("/**").permitAll();
+        http.authorizeRequests().antMatchers("/**","/actuator/**").permitAll();
     }
 
     @Autowired

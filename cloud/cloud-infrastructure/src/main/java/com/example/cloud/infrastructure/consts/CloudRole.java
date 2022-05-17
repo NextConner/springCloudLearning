@@ -1,4 +1,4 @@
-package com.example.cloud.user.consts;
+package com.example.cloud.infrastructure.consts;
 
 /**
  * 内置的角色信息

@@ -1,7 +1,6 @@
-package com.example.cloud.user.domain;
+package com.example.cloud.infrastructure.domain;
 
-import com.example.cloud.infrastructure.domain.BaseEntity;
-import com.example.cloud.user.consts.*;
+import com.example.cloud.infrastructure.consts.*;
 import lombok.Data;
 
 import javax.persistence.Entity;

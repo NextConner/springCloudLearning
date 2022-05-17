@@ -1,0 +1,6 @@
+export const ACCESS_TOKEN = 'Access-Token'
+export const CLIENT_ID = 'client_id'
+export const CLIENT_SECRET = 'client_secret'
+export const SCOPE = 'scope'
+export const RESPONSE_TYPE = 'response_type'
+export const REDIRECT_URI='redirect_uri'

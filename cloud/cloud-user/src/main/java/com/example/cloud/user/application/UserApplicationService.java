@@ -2,26 +2,20 @@ package com.example.cloud.user.application;
 
 import com.example.cloud.infrastructure.domain.User;
 import com.example.cloud.infrastructure.infrastructure.security.AuthenticUser;
-import com.example.cloud.user.domain.Permission;
-import com.example.cloud.user.domain.RolePermission;
-import com.example.cloud.user.domain.UserRole;
+import com.example.cloud.infrastructure.domain.Permission;
+import com.example.cloud.infrastructure.domain.RolePermission;
+import com.example.cloud.infrastructure.domain.UserRole;
 import com.example.cloud.user.domain.repository.PermissionRepository;
 import com.example.cloud.user.domain.repository.RolePermissionRepository;
 import com.example.cloud.user.domain.repository.UserRepository;
 import com.example.cloud.user.domain.repository.UserRoleRepository;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.*;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.function.ToLongFunction;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 用户服务应用接口层

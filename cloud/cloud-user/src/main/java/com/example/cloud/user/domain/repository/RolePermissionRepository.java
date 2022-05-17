@@ -1,6 +1,6 @@
 package com.example.cloud.user.domain.repository;
 
-import com.example.cloud.user.domain.RolePermission;
+import com.example.cloud.infrastructure.domain.RolePermission;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
  * @author jintaoZou
  * @date 2022/5/12-14:24
  */
-public interface RolePermissionRepository extends CrudRepository<RuntimePermission,Long> {
+public interface RolePermissionRepository extends CrudRepository<RolePermission,Long> {
 
     /**
      * 查找角色权限

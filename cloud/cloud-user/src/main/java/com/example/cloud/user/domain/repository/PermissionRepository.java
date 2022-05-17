@@ -1,6 +1,6 @@
 package com.example.cloud.user.domain.repository;
 
-import com.example.cloud.user.domain.Permission;
+import com.example.cloud.infrastructure.domain.Permission;
 import org.springframework.data.repository.CrudRepository;
 
 /**

@@ -1,16 +1,12 @@
-package com.example.cloud.user.domain;
+package com.example.cloud.infrastructure.domain;
 
-import com.example.cloud.infrastructure.domain.BaseEntity;
-import com.example.cloud.user.consts.*;
-import com.example.cloud.user.utility.PermissionAttributeConverter;
+import com.example.cloud.infrastructure.consts.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import java.util.Set;
 
 /**
  *
