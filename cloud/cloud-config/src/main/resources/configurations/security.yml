@@ -1,0 +1,56 @@
+server:
+  port: ${PORT:8301}
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+cloud:
+  oauth2:
+    client:
+      list:
+        - clientId: cloud-user
+          clientSecret: cloud-user-secret
+          accessTokenUri: ${uri.auth.token}
+          grantTypes: authorization_code,implicit
+          redirectUris: https://bing.com,http://baidu.com,http://csdn.com
+          scope: SERVICE
+        - clientId: cloud-security
+          clientSecret: cloud-user-security
+          accessTokenUri: ${uri.auth.token}
+          redirectUris: https://bing.com,http://baidu.com
+          grantTypes: client_credentials
+          scope: SERVICE
+        - clientId: cloud-catt-coffee
+          clientSecret: cloud-catt-coffee-security
+          accessTokenUri: ${uri.auth.token}
+          redirectUris: http://localhost:3000/cloud/cat-coffee
+          grantTypes: refresh_token,password,implicit,client_credentials
+          scope: SERVICE,BROWSER
+
+security:
+  cloud:
+    oauth2:
+      client:
+        clientId: security
+        clientSecret: security_secret
+        accessTokenUri: http://localhost:8301/oauth/token
+        grantType: client_credentials,authorization_code,password
+        scope: SERVICE
+
+logging:
+  pattern:
+    console: "%clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(-){faint} %clr([%t]){faint} %clr(%-40logger{39}){cyan}[%line]%clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+  level:
+    root: INFO
+
+uri:
+  auth:
+    token: http://localhost:${PORT:8301}/oauth/token
+token:
+  key:
+    access: permitAll()
+  check:
+    access: permitAll()
