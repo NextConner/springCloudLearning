@@ -1,11 +1,11 @@
-package com.example.cloud.security.config;
+package com.example.cloud.infrastructure.infrastructure.security;
 
-import com.example.cloud.security.utility.CloudEncryptionPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.resource.BaseOAuth2ProtectedResourceDetails;
-import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
@@ -24,7 +24,7 @@ import javax.inject.Named;
 public class CloudClientDetailsService implements ClientDetailsService {
 
     @Inject
-    private CloudEncryptionPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Inject
     private CloudServiceConfigClient cloudServiceConfigClient;
@@ -41,7 +41,7 @@ public class CloudClientDetailsService implements ClientDetailsService {
     @PostConstruct
     public void init() throws Exception {
         InMemoryClientDetailsServiceBuilder builder = new InMemoryClientDetailsServiceBuilder();
-        cloudServiceConfigClient.getList().forEach(resourceDetail -> {
+        cloudServiceConfigClient.getList().stream().forEach(resourceDetail -> {
             builder.withClient(resourceDetail.getClientId())
                     .secret(passwordEncoder.encode(resourceDetail.getClientSecret()))
                     .scopes(resourceDetail.getScope())
@@ -56,4 +56,5 @@ public class CloudClientDetailsService implements ClientDetailsService {
     private BaseOAuth2ProtectedResourceDetails securityClient() {
         return new BaseOAuth2ProtectedResourceDetails();
     }
+
 }

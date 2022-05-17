@@ -23,25 +23,38 @@ const authHeader = ()=>{
 	}
 }
 
+
+const AUTH_URI = process.env.development.VUE_APP_API_AUTH_URL
+const TOKEN_URI = process.env.development.VUE_APP_API_AUTH_URL
+
 export default api
 
-// 授权方法，获取授权码
-export async function auth() { 
-	let authUrl = process.env.development.VUE_APP_API_AUTH_URL
-	let clietnId = process.env.VUE_APP_API_CLIENT_ID
-	let clietnSecret = process.env.VUE_APP_API_CLIENT_SECRET
-	let scope = process.env.VUE_APP_API_SCOPE
-	let responseType = process.env.VUE_APP_API_RESPONSE_TYPE
-	let redirectUrl = process.env.VUE_APP_API_REDIRECT_URL
-	let data = {
+const clietnId = process.env.VUE_APP_API_CLIENT_ID
+const clietnSecret = process.env.VUE_APP_API_CLIENT_SECRET
+const scope = process.env.VUE_APP_API_SCOPE
+const responseType = process.env.VUE_APP_API_RESPONSE_TYPE
+const redirectUrl = process.env.VUE_APP_API_REDIRECT_URL
+const data = {
 		CLIENT_ID: clietnId,
 		CLIENT_SECRET: clietnSecret,
 		SCOPE: scope,
 		RESPONSE_TYPE : responseType,
 		REDIRECT_URI: redirectUrl
 	}
-	return getAction(authUrl,data)
+
+// 授权方法，获取授权码
+export async function auth() { 
+	return getAction(AUTH_URI,data)
+}
+
+ export async function token(tokenData){
+	return postAction(TOKEN_URI,tokenData)
  }
+
+export async function login(userModel){
+	let userName = userModel.userName
+	let password = userModel.password
+}
 
 //post
 export function postAction(url, parameter,header) {

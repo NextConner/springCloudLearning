@@ -11,6 +11,7 @@ import com.example.cloud.user.application.UserApplicationService;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PreFilter;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 
@@ -48,7 +49,8 @@ public class UserResource {
     @UserQueryPreAuthorize
     @GET
     @Path("/{userName}")
-    @PreAuthorize("#oauth2.hasAnyScope('SERVICE')")
+    @PreAuthorize("#oauth2.hasAnyScope('BROWSER')")
+    @PreFilter("hasRole('TEST')")
     public AuthenticUser getUser() {
         return userApplicationService.findByUserName(userName);
     }

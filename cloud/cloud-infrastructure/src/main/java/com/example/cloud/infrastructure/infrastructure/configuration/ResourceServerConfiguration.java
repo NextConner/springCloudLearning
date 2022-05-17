@@ -1,5 +1,6 @@
 package com.example.cloud.infrastructure.infrastructure.configuration;
 
+import com.example.cloud.infrastructure.infrastructure.security.JWTAccessTokenService;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 
+import javax.inject.Inject;
+
 /**
  * @author jintaoZou
  * @date 2022/5/9-14:02
@@ -20,6 +23,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
+    @Inject
+    private JWTAccessTokenService tokenService;
 
     /**
      * 配置HTTP访问相关的安全选项
@@ -45,11 +50,15 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
-//        resources.tokenServices(tokenService);
+        resources.tokenServices(tokenService);
     }
 
+    /**
+     * 客户端服务
+     * @return
+     */
     @Bean
-    @ConfigurationProperties(prefix = "security.oauth2.client")
+    @ConfigurationProperties(prefix = "security.cloud.oauth2.client")
     public ClientCredentialsResourceDetails clientCredentialsResourceDetails() {
         return new ClientCredentialsResourceDetails();
     }
