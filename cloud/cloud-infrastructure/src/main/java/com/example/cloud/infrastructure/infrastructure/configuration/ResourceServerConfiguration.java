@@ -57,10 +57,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
      * 客户端服务
      * @return
      */
-    @Bean
-    @ConfigurationProperties(prefix = "security.cloud.oauth2.client")
-    public ClientCredentialsResourceDetails clientCredentialsResourceDetails() {
-        return new ClientCredentialsResourceDetails();
-    }
+//    @Bean
+//    @ConfigurationProperties(prefix = "security.cloud.oauth2.client")
+//    public ClientCredentialsResourceDetails clientCredentialsResourceDetails() {
+//        return new ClientCredentialsResourceDetails();
+//    }
 }
 

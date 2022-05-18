@@ -9,7 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @date 2022/5/7-9:28
  */
 @EnableDiscoveryClient
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.example.cloud"})
 public class CloudGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(CloudGatewayApplication.class,args);

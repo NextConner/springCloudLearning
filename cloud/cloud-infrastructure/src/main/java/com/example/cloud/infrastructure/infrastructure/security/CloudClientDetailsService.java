@@ -52,7 +52,7 @@ public class CloudClientDetailsService implements ClientDetailsService {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "security.oauth2.client")
+    @ConfigurationProperties(prefix = "security.cloud.oauth2.client")
     private BaseOAuth2ProtectedResourceDetails securityClient() {
         return new BaseOAuth2ProtectedResourceDetails();
     }

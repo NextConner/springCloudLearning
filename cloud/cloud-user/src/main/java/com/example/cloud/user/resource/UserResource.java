@@ -46,11 +46,9 @@ public class UserResource {
      * 这里的  @PreAuthorize("#oauth2.hasAnyScope('SERVICE')") 用来限制远程访问的授权客户端是否具备 SERVICE 的 scope
      * @return
      */
-    @UserQueryPreAuthorize
     @GET
     @Path("/{userName}")
-    @PreAuthorize("#oauth2.hasAnyScope('BROWSER')")
-    @PreFilter("hasRole('TEST')")
+    @PreAuthorize("#oauth2.hasAnyScope('BROWSER','SERVICE')")
     public AuthenticUser getUser() {
         return userApplicationService.findByUserName(userName);
     }
@@ -76,7 +74,7 @@ public class UserResource {
     @UserCreatePreAuthorize
     @ContactPermission
     @POST
-    public Response addUser(@P("contact") User user) {
+    public Response addUser(User user) {
         return CommonResponse.op(() -> userApplicationService.createUser(user));
     }
 

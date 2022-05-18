@@ -3,6 +3,7 @@ package com.example.cloud.infrastructure.infrastructure.configuration;
 import feign.Contract;
 import feign.RequestInterceptor;
 import feign.jaxrs2.JAXRS2Contract;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +41,12 @@ public class FeignConfiguration {
     @Bean
     public RequestInterceptor oauth2FeignRequestInterceptor() {
         return new OAuth2FeignRequestInterceptor(new DefaultOAuth2ClientContext(), resource);
+    }
+
+    @Bean
+    @ConfigurationProperties(prefix = "security.cloud.oauth2.client")
+    public ClientCredentialsResourceDetails clientCredentialsResourceDetails() {
+        return new ClientCredentialsResourceDetails();
     }
 
 }

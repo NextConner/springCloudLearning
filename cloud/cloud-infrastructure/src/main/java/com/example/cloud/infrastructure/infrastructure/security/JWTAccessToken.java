@@ -48,7 +48,6 @@ import java.util.Map;
  * @author icyfenix@gmail.com
  * @date 2020/3/9 9:46
  */
-@Named
 public class JWTAccessToken extends JwtAccessTokenConverter {
 
 
@@ -78,8 +77,6 @@ public class JWTAccessToken extends JwtAccessTokenConverter {
             // 这里主要是出于演示Payload的用途，以及方便客户端获取（否则客户端要从令牌中解码Base64来获取），设置了一个“username”，两者的内容是一致的
             payLoad.put("username", user.getName());
             payLoad.put("authorities", authorities);
-            payLoad.put("iss", "icyfenix@gmail.com");
-            payLoad.put("sub", "bookstore");
             ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(payLoad);
         }
         return super.enhance(accessToken, authentication);
