@@ -48,7 +48,7 @@ public class UserResource {
      */
     @GET
     @Path("/{userName}")
-    @PreAuthorize("#oauth2.hasAnyScope('BROWSER','SERVICE')")
+    @PreAuthorize("#oauth2.hasAnyScope('SERVICE') and hasAnyAuthority('COFFEE')")
     public AuthenticUser getUser() {
         return userApplicationService.findByUserName(userName);
     }

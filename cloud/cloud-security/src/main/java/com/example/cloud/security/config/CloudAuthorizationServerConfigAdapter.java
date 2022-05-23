@@ -40,7 +40,7 @@ public class CloudAuthorizationServerConfigAdapter extends AuthorizationServerCo
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    CloudClientDetailsService cloudClientDetailsService;
+    private CloudClientDetailsService cloudClientDetailsService;
 
     @Autowired
     private UsernamePassAuthenticationProvider userAuthenticationProvider;

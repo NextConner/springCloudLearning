@@ -1,5 +1,7 @@
 package com.example.cloud.infrastructure.infrastructure.configuration;
 
+import com.example.cloud.infrastructure.infrastructure.security.CloudClientDetailsService;
+import com.example.cloud.infrastructure.infrastructure.security.CloudServiceConfigClient;
 import feign.Contract;
 import feign.RequestInterceptor;
 import feign.jaxrs2.JAXRS2Contract;
@@ -43,10 +45,5 @@ public class FeignConfiguration {
         return new OAuth2FeignRequestInterceptor(new DefaultOAuth2ClientContext(), resource);
     }
 
-    @Bean
-    @ConfigurationProperties(prefix = "security.cloud.oauth2.client")
-    public ClientCredentialsResourceDetails clientCredentialsResourceDetails() {
-        return new ClientCredentialsResourceDetails();
-    }
 
 }

@@ -44,7 +44,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         // 在HTTP过滤器层面，在所有的服务都允许未认证的访问
         // 在方法安全层面，每个方法上设置所需要的认证、授权规则
         // 即采用方式二来控制权限
-        http.authorizeRequests().anyRequest().permitAll();
+        http.authorizeRequests().antMatchers("**/oauth/**").permitAll();
 
     }
 
@@ -57,10 +57,12 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
      * 客户端服务
      * @return
      */
-//    @Bean
-//    @ConfigurationProperties(prefix = "security.cloud.oauth2.client")
-//    public ClientCredentialsResourceDetails clientCredentialsResourceDetails() {
-//        return new ClientCredentialsResourceDetails();
-//    }
-}
+    @Bean
+    @ConfigurationProperties(prefix = "security.oauth2.client")
+    public ClientCredentialsResourceDetails clientCredentialsResourceDetails() {
+        ClientCredentialsResourceDetails resourceDetails  = new ClientCredentialsResourceDetails();
+        return  resourceDetails;
+    }
 
+
+}
